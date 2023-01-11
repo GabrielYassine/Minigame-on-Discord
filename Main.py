@@ -1,4 +1,3 @@
-
 import discord
 import info
 import asyncio
@@ -28,10 +27,15 @@ def get_token():
 
 @client.event
 async def on_ready():
+    
+    
+
+    print(money)
     print("Connected!")
 
 @client.event
 async def on_message(message):
+    print(money)
     contents = message.content
 
 #BILLEDE SKAL POSTES NÅR SPILLET STARTER, samt ændre en variable fra 0 til 1.
@@ -43,6 +47,7 @@ async def on_message(message):
                 reply = "You are already in a game"
                 await message.channel.send(reply)
             if gamemode == 0:
+                # user = message.author.id 
                 await info.start_game(message)
                 gamemode = 1
 
@@ -51,6 +56,7 @@ async def on_message(message):
         rem = contents[1:]
         if rem == "help":
             await info.help(message)
+    
     if gamemode == 1:
         if contents.startswith("!shop"):
             rem = contents[1:]
@@ -65,55 +71,61 @@ async def on_message(message):
                 await shop_message.add_reaction('❤️')  # Emoji for health
                 await shop_message.add_reaction('🛡')  # Emoji for armor penetration
 
-                while True:  # Loop indefinitely
-                    def check(reaction, user):
-                        return user == message.author and str(reaction.emoji) in ['⚔️', '❤️', '🛡']
-                        
-                    try:
-                        reaction, user = await client.wait_for('reaction_add', timeout=10.0, check=check)
-                    except asyncio.TimeoutError:
-                        pass  # Do nothing if the timeout is reached
-                    else:
-                        if money < 300:  # Check if the user has enough money
-                            await message.channel.send("You don't have enough money to upgrade.")
-                            try:
-                                await shop_message.delete()  # Delete the shop message
-                            except discord.errors.NotFound:
-                                pass  # Do nothing if the message has already been deleted
-                        elif str(reaction.emoji) == '⚔️':
-                            # Upgrade strength
-                            strength += 1
-                            reply = "your strength is now lvl {}".format(strength)
-                            await message.channel.send(reply)
-                            money -= 300  # Deduct the cost from the user's money
-                            try:
-                                await shop_message.delete()  # Delete the shop message
-                            except discord.errors.NotFound:
-                                pass  # Do nothing if the message has already been deleted
-                        elif str(reaction.emoji) == '❤️':
-                            health += 1
-                            reply = "your health is now lvl {}".format(health)
-                            await message.channel.send(reply)
-                            money -= 300  # Deduct the cost from the user's money
-                            try:
-                                await shop_message.delete()  # Delete the shop message
-                            except discord.errors.NotFound:
-                                pass  # Do nothing if the message has already been deleted
-                        elif str(reaction.emoji) == '🛡':
-                            # Upgrade armor penetration
-                            armor_penetration += 1
-                            reply = "your armor penetration is now lvl {}".format(armor_penetration)
-                            await message.channel.send(reply)
-                            money -= 300  # Deduct the cost from the user's money
-                            try:
-                                await shop_message.delete()  # Delete the shop message
-                            except discord.errors.NotFound:
-                                pass  # Do nothing if the message has already been deleted
-                        break  # Exit the loop
+                def check(reaction, user):
+                    return user == message.author and str(reaction.emoji) in ['⚔️', '❤️', '🛡']
+                try:
+                    reaction, user = await client.wait_for('reaction_add', timeout=10.0, check=check)
+                    
+                except asyncio.TimeoutError:
                     try:
                         await shop_message.delete()  # Delete the shop message
                     except discord.errors.NotFound:
                         pass  # Do nothing if the message has already been deleted
+
+                else:
+                    if money < 300:  # Check if the user has enough money
+                        await message.channel.send("You don't have enough money to upgrade.")
+                        try:
+                            await shop_message.delete()  # Delete the shop message
+                        except discord.errors.NotFound:
+                            pass  # Do nothing if the message has already been deleted
+
+                    elif str(reaction.emoji) == '⚔️':
+                        # Upgrade strength
+                        strength += 1
+                        reply = "your strength is now lvl {}".format(strength)
+                        await message.channel.send(reply)
+                        money -= 300  # Deduct the cost from the user's money
+                        try:
+
+                            await shop_message.delete()  # Delete the shop message
+                            if money > 300:
+                                await message.channel.send("!shop")
+
+                        except discord.errors.NotFound:
+                            pass  # Do nothing if the message has already been deleted
+
+                    elif str(reaction.emoji) == '❤️':
+                        health += 1
+                        reply = "your health is now lvl {}".format(health)
+                        await message.channel.send(reply)
+                        money -= 300  # Deduct the cost from the user's money
+                        try:
+                            await shop_message.delete()  # Delete the shop message
+                        except discord.errors.NotFound:
+                            pass  # Do nothing if the message has already been deleted
+
+                    elif str(reaction.emoji) == '🛡':
+                        # Upgrade armor penetration
+                        armor_penetration += 1
+                        reply = "your armor penetration is now lvl {}".format(armor_penetration)
+                        await message.channel.send(reply)
+                        money -= 300  # Deduct the cost from the user's money
+                        try:
+                            await shop_message.delete()  # Delete the shop message
+                        except discord.errors.NotFound:
+                            pass  # Do nothing if the message has already been deleted
+
 
         #ADD 1-3 FORSKELLIGE COMMANDS TIL ALLE LANES, kan bruges når som helst.
     if contents.startswith("!gank"):
