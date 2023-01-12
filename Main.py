@@ -27,43 +27,37 @@ def get_token():
 
 @client.event
 async def on_ready():
-    
-    
-
-    print(money)
     print("Connected!")
 
 @client.event
 async def on_message(message):
-    print(money)
     contents = message.content
 
+    if gamemode == 0:
 #BILLEDE SKAL POSTES NÅR SPILLET STARTER, samt ændre en variable fra 0 til 1.
-    if contents.startswith("!start"):
-        rem = contents[1:]
-        if rem == "start":
-            global gamemode
-            if gamemode == 1:
-                reply = "You are already in a game"
-                await message.channel.send(reply)
-            if gamemode == 0:
+        if contents.startswith("!play"):
+            rem = contents[1:]
+            if rem == "play":
+                global gamemode
                 # user = message.author.id 
                 await info.start_game(message)
                 gamemode = 1
 
-    #liste af mulige commands.
-    if contents.startswith("!help"):
-        rem = contents[1:]
-        if rem == "help":
-            await info.help(message)
-    
     if gamemode == 1:
-        if contents.startswith("!shop"):
+
+        #liste af mulige commands.
+        if contents.startswith("!help"):
             rem = contents[1:]
+            if rem == "help":
+                await info.help(message)
+
+        #Shop funktionen        
+        if contents.startswith("!shop"):
             global money
             global strength
             global health
             global armor_penetration
+            rem = contents[1:]
             if rem == "shop":
                 reply = "Hello Summoner, you can choose to upgrade your Strength, Health or Armor penetration, you currently have {} money".format(money)
                 shop_message = await message.channel.send(reply)
@@ -128,66 +122,60 @@ async def on_message(message):
 
 
         #ADD 1-3 FORSKELLIGE COMMANDS TIL ALLE LANES, kan bruges når som helst.
-    if contents.startswith("!gank"):
-        if gamemode == 1:
-            rem = contents[1:]
-            if rem == "gank":
-                reply = "you have ganked"
-                
-            await message.channel.send(reply)
-
-    #Nogle kriterier i forhold til stats skal opfyldes før man kan skrive denne command.
-    if contents.startswith("!drake"):
-        rem = contents[1:]
-        if rem == "drake":
+        if contents.startswith("!gank"):
             if gamemode == 1:
-                global kills
-                if kills == 0:
-                    if health >= 2 and strength >= 2 and armor_penetration >= 2:
-                        reply = "you have succesfully killed the first dragon"
-                        await message.channel.send(reply)
-                        kills += 1
-                if kills == 1:
-                    if health >= 3 and strength >= 3 and armor_penetration >= 3:
-                        reply = "you have succesfully killed the second dragon"
-                        await message.channel.send(reply)
-                        kills +=1
-                if kills == 2:
-                    if health >= 4 and strength >= 4 and armor_penetration >= 4:
-                        reply = "you have succesfully killed the third dragon"
-                        await message.channel.send(reply)
-                        kills +=1
-                if kills == 3:
-                    if health >= 5 and strength >= 5 and armor_penetration >= 5:
-                        reply = "you have succesfully killed the fourth dragon"
-                        await message.channel.send(reply)
-                        kills +=1
-                        # add at man vinder, game ender, og time bliver gemt til user id. Du skal nok bruge en dictionary.
-            if gamemode == 0:
-                reply = "this command can only be used while a game is active."
+                rem = contents[1:]
+                if rem == "gank":
+                    reply = "you have ganked"
+                    
                 await message.channel.send(reply)
 
+    #Nogle kriterier i forhold til stats skal opfyldes før man kan skrive denne command.
+        if contents.startswith("!drake"):
+            rem = contents[1:]
+            if rem == "drake":
+                if gamemode == 1:
+                    global kills
+                    killDragon(kills)
+                    def killDragon(kills):
+                        if health >= 2+kills and strength >= 2+kills and armor_penetration >= 2+kills:
+                            reply = f"you have succesfully killed the {dragon_number(kills)} dragon"
+                            await message.channel.send(reply)
+                            kills += 1
+                    if kills == 1:
+                        if health >= 3 and strength >= 3 and armor_penetration >= 3:
+                            reply = "you have succesfully killed the second dragon"
+                            await message.channel.send(reply)
+                            kills +=1
+                    if kills == 2:
+                        if health >= 4 and strength >= 4 and armor_penetration >= 4:
+                            reply = "you have succesfully killed the third dragon"
+                            await message.channel.send(reply)
+                            kills +=1
+                    if kills == 3:
+                        if health >= 5 and strength >= 5 and armor_penetration >= 5:
+                            reply = "you have succesfully killed the fourth dragon"
+                            await message.channel.send(reply)
+                            kills +=1
+                            # add at man vinder, game ender, og time bliver gemt til user id. Du skal nok bruge en dictionary.
+                if gamemode == 0:
+                    reply = "this command can only be used while a game is active."
+                    await message.channel.send(reply)
+
     #ADD 1-4 FORSKELLIGE COMMANDS TIL JUNGLE, kan bruges når som helst.
-    if contents.startswith("!jungle"):
-        rem = contents[1:]
-        if rem == "jungle":
-            if gamemode == 1:
+        if contents.startswith("!jungle"):
+            rem = contents[1:]
+            if rem == "jungle":
                 random_number = random.randint(100, 200)
                 money += random_number
                 reply = "you have cleared the jungle, new balance: {}".format(money)
                 await message.channel.send(reply)
-            if gamemode == 0:
-                reply = "this command can only be used while a game is active."
-                await message.channel.send(reply)
+                
             
     #skal force end et spil og skal kun kunne anvendes når man er i et spil og ændrer gamemode fra 1 til 0.
-    if contents.startswith("!surrender"):
-        rem = contents[1:]
-        if rem == "surrender":
-            if gamemode == 0:
-                reply = "You arent in a game yet"
-                await message.channel.send(reply)
-            if gamemode == 1:
+        if contents.startswith("!surrender"):
+            rem = contents[1:]
+            if rem == "surrender":
                 reply = "Imagine surrendering, Major L, uninstall life tbh skull emoji x7"
                 await message.channel.send(reply)
                 global time
