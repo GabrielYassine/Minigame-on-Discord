@@ -11,7 +11,10 @@ async def on_message(message):
 
 @client.event
 async def jungle_clear(message, player):
-    player.time += 30
+    if player.movement_speed == 1:
+        player.time += 15
+    else:
+        player.time += 30
     random_number = random.randint(100, 200)
     player.money += random_number
     reply = "you have cleared the jungle, new balance: {}".format(player.money)

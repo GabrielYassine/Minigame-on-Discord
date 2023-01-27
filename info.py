@@ -11,8 +11,11 @@ async def on_message(message):
 async def start_game(message):
     reply = "Welcome To Summernes Rift!\n"
     reply += "This game is about defeating a total of 4 drakes in the shortest possible time.\n"
+    reply += "The first drake requirement is level 2 of strength, health and armor penetration. \n"
+    reply += "Each time you defeat a drake, the requirements rise by 1 level on each stat. \n"
     reply += "You can choose between ganking the different lanes or defeating the monsters in the jungle to obtain gold.\n"
-    reply += "You can spend gold in the shop to upgrade your stats, to higher your ganking sucessrate, and to defeat the drakes.\n"
+    reply += "You can spend gold in the shop to upgrade your stats, to higher your ganking sucessrate, clear speed, and to defeat the drakes.\n"
+    reply += "Strength, health and armor penetration upgrades cost 300 while movement_speed costs 1000"
     reply += "To defeat the drake your stats must fit the specific requirements, and for each drake you defeat, the requirements get progressivly higher.\n"
     reply += "You can at any point in the game type !help, to see the different commands that are available. Now Enjoy!"
     await message.channel.send(reply, file=discord.File('map.jpg'))
