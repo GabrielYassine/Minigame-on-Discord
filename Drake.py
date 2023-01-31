@@ -17,4 +17,6 @@ async def drake_clear(message, player):
             player.gamemode = 0
         else:
             reply = f"You have successfully killed the {player.kills} dragon"
-        await message.channel.send(reply)
+    else:
+        reply = "You do not meet the requirements to defeat the drake. Increase your health, strength, and armor penetration to try again."
+    await message.channel.send(reply)

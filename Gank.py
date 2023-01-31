@@ -59,25 +59,25 @@ async def gank_lane(client, message, player):
                     player.time += 15
                 else:
                     player.time += 30
-                    random_number = random.randint(0, 100)
-                    if random_number <= chance:
-                        random_number = random.randint(300, 400)
-                        player.money += random_number
-                        reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
-                        await message.channel.send(reply)
-                    else:
-                        reply = "you have unsuccesfully ganked botlane"
-                        await message.channel.send(reply)
-                    try:
-                        await confirm_message.delete()
-                    except discord.errors.NotFound:
-                        pass
-
-            elif str(reaction.emoji) == '🚫':
+                random_number = random.randint(0, 100)
+                if random_number <= chance:
+                    random_number = random.randint(300, 400)
+                    player.money += random_number
+                    reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
+                    await message.channel.send(reply)
+                else:
+                    reply = "you have unsuccesfully ganked botlane"
+                    await message.channel.send(reply)
                 try:
                     await confirm_message.delete()
                 except discord.errors.NotFound:
                     pass
+
+        elif str(reaction.emoji) == '🚫':
+            try:
+                await confirm_message.delete()
+            except discord.errors.NotFound:
+                pass
 
 #######################
 
@@ -108,19 +108,19 @@ async def gank_lane(client, message, player):
                     player.time += 15
                 else:
                     player.time += 30
-                    random_number = random.randint(0, 100)
-                    if random_number <= chance:
-                        random_number = random.randint(300, 400)
-                        player.money += random_number
-                        reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
-                        await message.channel.send(reply)
-                    else:
-                        reply = "you have unsuccesfully ganked botlane"
-                        await message.channel.send(reply)
-                    try:
-                        await confirm_message.delete()
-                    except discord.errors.NotFound:
-                        pass
+                random_number = random.randint(0, 100)
+                if random_number <= chance:
+                    random_number = random.randint(300, 400)
+                    player.money += random_number
+                    reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
+                    await message.channel.send(reply)
+                else:
+                    reply = "you have unsuccesfully ganked botlane"
+                    await message.channel.send(reply)
+                try:
+                    await confirm_message.delete()
+                except discord.errors.NotFound:
+                    pass
 
             elif str(reaction.emoji) == '🚫':
                 try:
@@ -157,22 +157,22 @@ async def gank_lane(client, message, player):
                     player.time += 15
                 else:
                     player.time += 30
-                    random_number = random.randint(0, 100)
-                    if random_number <= chance:
-                        random_number = random.randint(300, 400)
-                        player.money += random_number
-                        reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
-                        await message.channel.send(reply)
-                    else:
-                        reply = "you have unsuccesfully ganked botlane"
-                        await message.channel.send(reply)
-                    try:
-                        await confirm_message.delete()
-                    except discord.errors.NotFound:
-                        pass
-
-            elif str(reaction.emoji) == '🚫':
+                random_number = random.randint(0, 100)
+                if random_number <= chance:
+                    random_number = random.randint(300, 400)
+                    player.money += random_number
+                    reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
+                    await message.channel.send(reply)
+                else:
+                    reply = "you have unsuccesfully ganked botlane"
+                    await message.channel.send(reply)
                 try:
                     await confirm_message.delete()
                 except discord.errors.NotFound:
                     pass
+
+        elif str(reaction.emoji) == '🚫':
+            try:
+                await confirm_message.delete()
+            except discord.errors.NotFound:
+                pass

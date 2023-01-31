@@ -36,36 +36,36 @@ async def shop_open(client, message, player):
             await message.channel.send(reply)
         else:
             player.strength += 1
-            reply = "your strength is now lvl {}".format(player.strength)
-            await message.channel.send(reply)
             player.money -= 300
+            reply = "your strength is now lvl {}, your new balance is {}".format(player.strength, player.money)
+            await message.channel.send(reply)
     elif str(reaction.emoji) == '❤️':
         if player.health >= 5:
             reply = "Health can only be upgraded to level 5."
             await message.channel.send(reply)
         else:
             player.health += 1
-            reply = "your health is now lvl {}".format(player.health)
-            await message.channel.send(reply)
             player.money -= 300
+            reply = "your health is now lvl {}, your new balance is {}".format(player.health, player.money)
+            await message.channel.send(reply)
     elif str(reaction.emoji) == '🛡':
         if player.armor_penetration >= 5:
             reply = "Armor penetration can only be upgraded to level 5."
             await message.channel.send(reply)
         else:
             player.armor_penetration += 1
-            reply = "your armor penetration is now lvl {}".format(player.armor_penetration)
-            await message.channel.send(reply)
             player.money -= 300
+            reply = "your armor penetration is now lvl {}, your new balance is {}".format(player.armor_penetration, player.money)
+            await message.channel.send(reply)
     elif str(reaction.emoji) == '🏃':
         if player.movement_speed >= 1:
             reply = "Movement speed can only be upgraded once."
             await message.channel.send(reply)
         else:
             player.movement_speed += 1
-            reply = "your movement speed is now lvl {}".format(player.movement_speed)
-            await message.channel.send(reply)
             player.money -= 1000
+            reply = "your movement speed is now lvl {}, your new balance is {}".format(player.movement_speed, player.money)
+            await message.channel.send(reply)
     try:
         await shop_message.delete()
     except discord.errors.NotFound:

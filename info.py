@@ -15,7 +15,7 @@ async def start_game(message):
     reply += "Each time you defeat a drake, the requirements rise by 1 level on each stat. \n"
     reply += "You can choose between ganking the different lanes or defeating the monsters in the jungle to obtain gold.\n"
     reply += "You can spend gold in the shop to upgrade your stats, to higher your ganking sucessrate, clear speed, and to defeat the drakes.\n"
-    reply += "Strength, health and armor penetration upgrades cost 300 while movement_speed costs 1000"
+    reply += "Strength, health and armor penetration upgrades cost 300 while movement speed costs 1000 \n"
     reply += "To defeat the drake your stats must fit the specific requirements, and for each drake you defeat, the requirements get progressivly higher.\n"
     reply += "You can at any point in the game type !help, to see the different commands that are available. Now Enjoy!"
     await message.channel.send(reply, file=discord.File('map.jpg'))
