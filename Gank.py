@@ -34,7 +34,7 @@ async def gank_lane(client, message, player):
     else:
         if str(reaction.emoji) == '⤴️':
             chance = 40 + player.strength * 2 + player.health * 1 + player.armor_penetration * 4
-            reply = "you have chosen toplane, your chances of success are {}, are you sure you want to continue?".format(chance)
+            reply = f"you have chosen toplane, your chances of success are {chance}, are you sure you want to continue?"
             confirm_message = await message.channel.send(reply)
             await confirm_message.add_reaction('✅')
             await confirm_message.add_reaction('🚫')
@@ -63,7 +63,7 @@ async def gank_lane(client, message, player):
                 if random_number <= chance:
                     random_number = random.randint(300, 400)
                     player.money += random_number
-                    reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
+                    reply = f"you have succesfully ganked toplane, new balance: {player.money}"
                     await message.channel.send(reply)
                 else:
                     reply = "you have unsuccesfully ganked botlane"
@@ -83,7 +83,7 @@ async def gank_lane(client, message, player):
 
         elif str(reaction.emoji) == '⬆️':
             chance = 40 + player.strength * 2 + player.health * 4 + player.armor_penetration * 1
-            reply = "you have chosen midlane, your chances of success are {}, are you sure you want to continue?".format(chance)
+            reply = f"you have chosen midlane, your chances of success are {player.chance}, are you sure you want to continue?"
             confirm_message = await message.channel.send(reply)
             await confirm_message.add_reaction('✅')
             await confirm_message.add_reaction('🚫')
@@ -112,7 +112,7 @@ async def gank_lane(client, message, player):
                 if random_number <= chance:
                     random_number = random.randint(300, 400)
                     player.money += random_number
-                    reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
+                    reply = f"you have succesfully ganked toplane, new balance: {player.money}"
                     await message.channel.send(reply)
                 else:
                     reply = "you have unsuccesfully ganked botlane"
@@ -132,7 +132,7 @@ async def gank_lane(client, message, player):
 
         elif str(reaction.emoji) == '⤵️':
             chance = 40 + player.strength * 4 + player.health * 1 + player.armor_penetration * 2
-            reply = "you have chosen botlane, your chances of success are {}, are you sure you want to continue?".format(chance)
+            reply = f"you have chosen botlane, your chances of success are {player.chance}, are you sure you want to continue?"
             confirm_message = await message.channel.send(reply)
             await confirm_message.add_reaction('✅')
             await confirm_message.add_reaction('🚫')
@@ -161,7 +161,7 @@ async def gank_lane(client, message, player):
                 if random_number <= chance:
                     random_number = random.randint(300, 400)
                     player.money += random_number
-                    reply = "you have succesfully ganked toplane, new balance: {}".format(player.money)
+                    reply = f"you have succesfully ganked toplane, new balance: {player.money}"
                     await message.channel.send(reply)
                 else:
                     reply = "you have unsuccesfully ganked botlane"

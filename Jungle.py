@@ -17,5 +17,5 @@ async def jungle_clear(message, player):
         player.time += 30
     random_number = random.randint(100, 200)
     player.money += random_number
-    reply = "you have cleared the jungle, new balance: {}".format(player.money)
+    reply = f"you have cleared the jungle, new balance: {player.money}"
     await message.channel.send(reply)
