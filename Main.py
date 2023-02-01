@@ -2,10 +2,9 @@ import discord
 import Info
 import Class
 import Jungle
-import Drake
+import Dragon
 import Shop
 import Gank
-
 
 Player_dict = {}
 player = Class.Player(0,1,1,1,0,0,0,0)
@@ -91,12 +90,12 @@ async def on_message(message):
                 if player.money > 300:
                     await Shop.shop_open(client, message, player)
                 else:
-                    await message.channel.send("You don't have enough money to upgrade.")
+                    await message.channel.send("You don't have enough gold to upgrade.")
 
 ###########################
 
-            if contents.startswith("!drake"):
-                await Drake.drake_clear(message, player)
+            if contents.startswith("!dragon"):
+                await Dragon.dragon_clear(message, player)
 
 ##############################
 

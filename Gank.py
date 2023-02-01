@@ -63,10 +63,10 @@ async def gank_lane(client, message, player):
                 if random_number <= chance:
                     random_number = random.randint(300, 400)
                     player.money += random_number
-                    reply = f"you have succesfully ganked toplane, new balance: {player.money}"
+                    reply = f"you have succesfully ganked toplane, new balance: {player.money} gold."
                     await message.channel.send(reply)
                 else:
-                    reply = "you have unsuccesfully ganked botlane"
+                    reply = "you have unsuccesfully ganked botlane."
                     await message.channel.send(reply)
                 try:
                     await confirm_message.delete()
@@ -112,10 +112,10 @@ async def gank_lane(client, message, player):
                 if random_number <= chance:
                     random_number = random.randint(300, 400)
                     player.money += random_number
-                    reply = f"you have succesfully ganked toplane, new balance: {player.money}"
+                    reply = f"you have succesfully ganked toplane, new balance: {player.money} gold."
                     await message.channel.send(reply)
                 else:
-                    reply = "you have unsuccesfully ganked botlane"
+                    reply = "you have unsuccesfully ganked botlane."
                     await message.channel.send(reply)
                 try:
                     await confirm_message.delete()
@@ -161,10 +161,10 @@ async def gank_lane(client, message, player):
                 if random_number <= chance:
                     random_number = random.randint(300, 400)
                     player.money += random_number
-                    reply = f"you have succesfully ganked toplane, new balance: {player.money}"
+                    reply = f"you have succesfully ganked toplane, new balance: {player.money} gold."
                     await message.channel.send(reply)
                 else:
-                    reply = "you have unsuccesfully ganked botlane"
+                    reply = "you have unsuccesfully ganked botlane."
                     await message.channel.send(reply)
                 try:
                     await confirm_message.delete()
