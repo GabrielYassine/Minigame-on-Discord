@@ -32,9 +32,7 @@ async def shop_open(client, message, player):
     
 
     if reaction is not None:
-        reply = "Shop interaction timed out."
-        await message.channel.send(reply)
-
+        
         if str(reaction.emoji) == '⚔️':
             if player.strength >= 5:
                 reply = "Strength can only be upgraded to level 5."

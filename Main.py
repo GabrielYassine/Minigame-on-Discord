@@ -53,7 +53,10 @@ async def on_message(message):
         if contents.startswith("!play"):
             if message.author.id in Player_dict:
                 await Info.start_game(message)
+                player = Class.Player(0,1,1,1,0,0,0,0)
+                Player_dict[member_id] = player
                 player.gamemode = 1
+
         else:
             commands = ["!help", "!gank", "!shop", "!drake", "!jungle", "!surrender"]
             if contents.startswith(tuple(commands)):
@@ -107,6 +110,7 @@ async def on_message(message):
             if contents.startswith("!surrender"):
                 reply = "Imagine surrendering, Major L, uninstall life tbh skull emoji x7"
                 await message.channel.send(reply)
+                player.gamemode = 0
 
 ###########################
 
