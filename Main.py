@@ -1,9 +1,9 @@
 import discord
-import Info
+import info
 import Class
 import Jungle
 import Dragon
-import Shop
+import shop
 import Gank
 
 
@@ -53,7 +53,7 @@ async def on_message(message):
 
         if contents.startswith("!play"):
             if message.author.id in Player_dict:
-                await Info.start_game(message)
+                await info.start_game(message)
                 player = Class.Player(0,1,1,1,0,0,0,0)
                 Player_dict[member_id] = player
                 player.gamemode = 1
@@ -81,7 +81,7 @@ async def on_message(message):
                 await message.channel.send(reply)
             
             if contents.startswith("!help"):
-                await Info.help(message)
+                await info.help(message)
 
 ####################################
 
@@ -92,7 +92,7 @@ async def on_message(message):
                   
             if contents.startswith("!shop"):
                 if player.money > 300:
-                    await Shop.shop_open(client, message, player)
+                    await shop.shop_open(client, message, player)
                 else:
                     await message.channel.send("You don't have enough gold to upgrade.")
 

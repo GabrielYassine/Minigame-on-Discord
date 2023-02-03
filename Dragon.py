@@ -1,13 +1,12 @@
 import discord
-import Class
 
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-@client.event
+""" @client.event
 async def on_message(message):
-    contents = message.content
+    contents = message.content """
 
 @client.event
 async def dragon_clear(message, player):
