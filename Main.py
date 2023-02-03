@@ -59,7 +59,7 @@ async def on_message(message):
                 player.gamemode = 1
 
         else:
-            commands = ["!help", "!gank", "!shop", "!drake", "!jungle", "!surrender"]
+            commands = ["!help", "!gank", "!shop", "!dragon", "!jungle", "!surrender"]
             if contents.startswith(tuple(commands)):
                 reply = "You are currently not in an active game"
                 await message.channel.send(reply)
