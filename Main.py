@@ -6,6 +6,7 @@ import Dragon
 import Shop
 import Gank
 
+
 Player_dict = {}
 player = Class.Player(0,1,1,1,0,0,0,0)
 
