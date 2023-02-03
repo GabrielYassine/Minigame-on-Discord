@@ -4,10 +4,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-""" @client.event
-async def on_message(message):
-    contents = message.content """
-
 @client.event
 async def dragon_clear(message, player):
     if player.health >= player.kills + 2 and player.strength >= player.kills + 2 and player.armor_penetration >= player.kills + 2:

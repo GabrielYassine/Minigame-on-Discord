@@ -6,7 +6,6 @@ import Dragon
 import shop
 import Gank
 
-
 Player_dict = {}
 player = Class.Player(0,1,1,1,0,0,0,0)
 
@@ -54,9 +53,8 @@ async def on_message(message):
         if contents.startswith("!play"):
             if message.author.id in Player_dict:
                 await info.start_game(message)
-                player = Class.Player(0,1,1,1,0,0,0,0)
+                player = Class.Player(1,1,1,1,0,0,0,0)
                 Player_dict[member_id] = player
-                player.gamemode = 1
 
         else:
             commands = ["!help", "!gank", "!shop", "!dragon", "!jungle", "!surrender"]
@@ -79,7 +77,9 @@ async def on_message(message):
                 player.money = 5000
                 reply = "admin mode activated"
                 await message.channel.send(reply)
-            
+
+############################
+
             if contents.startswith("!help"):
                 await info.help(message)
 

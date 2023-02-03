@@ -6,10 +6,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-""" @client.event
-async def on_message(message):
-    contents = message.content """
-
 @client.event
 async def gank_lane(client, message, player):
     reply = "What lane do you want to have a go at?"

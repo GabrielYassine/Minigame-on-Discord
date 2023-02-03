@@ -5,10 +5,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-""" @client.event
-async def on_message(message):
-    contents = message.content """
-
 @client.event
 async def jungle_clear(message, player):
     if player.movement_speed == 1:

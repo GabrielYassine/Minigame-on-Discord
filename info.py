@@ -4,10 +4,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-""" @client.event
-async def on_message(message):
-    contents = message.content """
-    
 async def start_game(message):
     reply = "Welcome To League of Speed!\n"
     reply += "This game is about defeating a total of 4 dragons in the shortest possible time.\n"
